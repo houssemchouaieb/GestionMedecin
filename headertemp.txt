@@ -1,0 +1,29 @@
+<div class="header-wrap">
+		<div class="clearfix">
+			<div class="logo">
+				<a href="index.php"><img src="images/logo.svg" alt=""></a>
+			</div>
+			<div class="menu">
+				<div class="dropdown">
+					<a class="dropdown-toggle hamburgler" href="#" role="button" data-toggle="dropdown">
+						<span class="menu-icon">
+							<div class="bun top"></div>
+							<div class="meat"></div>
+							<div class="bun bottom"></div>
+						</span>
+					</a>
+					<div class="dropdown-menu dropdown-menu-right">
+						<ul>
+							<li><a class="dropdown-item" href="index.php">Login Style 1</a></li>
+							<li><a class="dropdown-item" href="index2.php">Login Style 2</a></li>
+							<li><a class="dropdown-item" href="index3.php">Login Style 3</a></li>
+							<li><a class="dropdown-item selected" href="index4.php">Login Style 4</a></li>
+							<li><a class="dropdown-item" href="index5.php">Login Style 5</a></li>
+							<li><a class="dropdown-item" href="index6.php">Login Style 6</a></li>
+							<li><a class="dropdown-item" href="index7.php">Login Style 7</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
