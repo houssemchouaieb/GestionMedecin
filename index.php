@@ -93,7 +93,7 @@
 													<div class="col-md-6 col-sm-12">
 														<div class="form-group">
 															<label class="label">Confirm Password</label>
-															<input type="password" class="form-control">
+															<input type="password" class="form-control" id="password2" name="password2">
 														</div>
 													</div>
 												</div>
