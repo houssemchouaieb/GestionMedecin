@@ -103,7 +103,7 @@ p {
 	width: 5px;
 }
 ::-webkit-scrollbar-track {
-	background: rgba(46,56,71,.5);
+	background: rgba(46,56,71,0.5);
 	border-radius: 0;
 }
 ::-webkit-scrollbar-thumb{
@@ -935,7 +935,7 @@ p {
 	border-bottom: 1px dashed #000;
 }
 .style4 .style4-left{
-	background: #ffffff;
+	background: rgba(150,150,100,0.4);
 }
 .style4 .style4-right{
 	background: rgba(60,59,55,0.8);

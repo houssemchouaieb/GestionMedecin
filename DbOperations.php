@@ -13,15 +13,20 @@
 
 		}
 
-		public function createUser($username,$pass,$email){
+		public function createUser($username,$pass,$pass2,$email){
 			if($this->isUserExist($username)){
 				return 0;
 			}else{
 
 			if((!empty($username))&&(!empty($email))){
-				$password=md5($pass);
-				$stmt=$this->con->prepare("INSERT INTO `users` (`id`, `username`, `email`, `password`) VALUES (NULL, ?, ?,?)");
-				$stmt->bind_param("sss",$username,$email,$password);
+				if($pass=$pass2){
+					$password=md5($pass);
+					$stmt=$this->con->prepare("INSERT INTO `users` (`id`, `username`, `email`, `password`) VALUES (NULL, ?, ?,?)");
+					$stmt->bind_param("sss",$username,$email,$password);
+				}
+				else{
+					return 4;
+				}
 			}
 			else{
 				return 3;
