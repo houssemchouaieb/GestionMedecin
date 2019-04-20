@@ -22,9 +22,6 @@
 </head>
 <body>
 
-	<!-- Header start -->
-	
-	<!-- Header end -->
 	<main class="cd-main">
 		<section class="cd-section index4 visible">
 			<div class="cd-content style4">
@@ -37,18 +34,16 @@
 									<div class="d-flex height-100-percentage padding-40px">
 										<div class="align-self-center width-100-percentage">
 											<h2>Login</h2>
-											<form>
+											<form action="userLogin.php" method="post">
 												<div class="form-group">
 													<label class="label">Email Address</label>
-													<input type="text" class="form-control" placeholder="Enter your email">
+													<input type="text" class="form-control" placeholder="Enter your email" name="email" id="email">
 												</div>
 												<div class="form-group">
 													<label class="label">Password</label>
-													<input type="password" class="form-control" placeholder="Enter your password">
+													<input type="password" class="form-control" placeholder="Enter your password" name="pass" id="pass">
 												</div>
-												<div class="forgot-txt">
-													<a href="javascript:;" class="forgot-password-click">Forgot Password</a>
-												</div>
+												
 												<div class="form-group">
 													<input type="submit" class="submit" value="Login">
 												</div>
@@ -59,8 +54,7 @@
 								<div class="col-md-4 col-sm-12 style4-right">
 									<div class="padding-40px">
 										<h4>Don't have an account?</h4>
-										<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-										tempor incididunt ut labore et dolore magna aliqua.</p>
+										<p>Sign up to use our system and facilitate your cabinet management  </p>
 										<div class="sign-up-txt">
 											<a href="javascript:;" class="sign-up-click">Register Now <i class="ion-arrow-right-c"></i></a>
 										</div>
@@ -76,24 +70,24 @@
 									<div class="d-flex height-100-percentage padding-40px">
 										<div class="align-self-center width-100-percentage">
 											<h2>Create An Account</h2>
-											<form>
+											<form action="registerUser.php" method="post">
 												<div class="row">
 													<div class="col-md-6 col-sm-12">
 														<div class="form-group">
 															<label class="label">Name</label>
-															<input type="text" class="form-control">
+															<input type="text" class="form-control" id="username" name="username">
 														</div>
 													</div>
 													<div class="col-md-6 col-sm-12">
 														<div class="form-group">
 															<label class="label">Email</label>
-															<input type="text" class="form-control">
+															<input type="text" class="form-control" id="email" name="email">
 														</div>
 													</div>
 													<div class="col-md-6 col-sm-12">
 														<div class="form-group">
 															<label class="label">Password</label>
-															<input type="password" class="form-control">
+															<input type="password" class="form-control" id="password" name="password">
 														</div>
 													</div>
 													<div class="col-md-6 col-sm-12">
@@ -116,31 +110,7 @@
 							</div>
 						</div>
 						<!-- signup slide end -->
-						<!-- forgot password slide start -->
-						<div class="forgot-password-slide slide">
-							<div class="d-flex height-100-percentage style4-left">
-								<div class="align-self-center width-100-percentage padding-40px">
-									<form>
-										<div class="row">
-											<div class="col-md-7 col-s-12">
-												<label class="label">Enter your email address to reset your password</label>
-												<div class="form-group user-name-field">
-													<label class="label">Email</label>
-													<input type="text" class="form-control">
-												</div>
-												<div class="form-group">
-													<input type="submit" class="submit" value="Submit">
-												</div>
-											</div>
-										</div>
-									</form>
-									<div class="sign-up-txt">
-										if you remember your password? <a href="javascript:;" class="login-click">login</a>
-									</div>
-								</div>
-							</div>
-						</div>
-						<!-- forgot password slide end -->
+						
 					</div>
 				</div>
 			</div>
