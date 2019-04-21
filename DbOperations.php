@@ -40,6 +40,55 @@
 
 		}}
 
+		public function addRdv($name,$email,$date,$message){
+
+			if((!empty($name))&&(!empty($email))&&(!empty($date))){
+				
+				$stmt=$this->con->prepare("INSERT INTO `rdv` (`id`, `name`, `email`, `date`, `traitement`) VALUES (NULL, ?, ?,?,?)");
+				$stmt->bind_param("ssss",$name,$email,$date,$message);		
+			}
+			else{
+				return 3;
+			}
+			if($stmt->execute()){
+				return 1;
+			}
+			else{
+				return 2;
+			}
+
+		}
+
+		public function isPatientExist($pre,$nom){
+			$stmt=$this->con->prepare("SELECT id FROM client WHERE nom=? AND prenom =?");
+			$stmt->bind_param("ss",$nom,$pre);
+			$stmt->execute();
+			$stmt->store_result();
+			return $stmt->num_rows>0;
+		}
+
+		public function addPatient($pre,$nom,$email,$adress,$phone,$spec){
+
+			if($this->isPatientExist($pre,$nom)){
+				return 0;
+			}else{
+
+			if((!empty($pre))&&(!empty($nom))&&(!empty($phone))){				
+				$stmt=$this->con->prepare("INSERT INTO `client` (`id`, `nom`, `prenom`, `email`, `adresse`, `telephone`, `specification`) VALUES (NULL, ?, ?,?,?,?,?)");
+				$stmt->bind_param("ssssss",$nom,$pre,$email,$adress,$phone,$spec);
+			}
+			else{
+				return 3;
+			}
+			if($stmt->execute()){
+				return 1;
+			}
+			else{
+				return 2;
+			}
+
+		}}
+
 		public function userLogin($email,$pass){
 
 			$password=md5($pass);
@@ -53,6 +102,14 @@
 			else{
 				return 0;
 			}
+		}
+
+		public function isUserExist($username){
+			$stmt=$this->con->prepare("SELECT id FROM users WHERE username=?");
+			$stmt->bind_param("s",$username);
+			$stmt->execute();
+			$stmt->store_result();
+			return $stmt->num_rows>0;
 		}
 		public function adminLogin($username,$pass){
 			$password=md5($pass);
@@ -72,13 +129,7 @@
 			return $stmt->get_result()->fetch_assoc();
 		}
 
-		public function isUserExist($username){
-			$stmt=$this->con->prepare("SELECT id FROM users WHERE username=?");
-			$stmt->bind_param("s",$username);
-			$stmt->execute();
-			$stmt->store_result();
-			return $stmt->num_rows>0;
-		}
+		
 		public function setPosition($lati,$longi,$username){
 			$stmt=$this->con->prepare("UPDATE `users` SET `lati`=?,`longi`=? WHERE username=?");
 			$stmt->bind_param("sss",$lati,$longi,$username);

@@ -64,20 +64,22 @@
             <div class="col-lg-5 offset-lg-1 align-self-center">
                     <div class="appointment-form text-center mt-5 mt-lg-0">
                         <h3 class="mb-5">Add Appointment</h3>
-                        <form action="#">
+                        <form action="AddRdv.php" method="post">
                             <div class="form-group">
-                                <input type="text" placeholder="Patient Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Your Name'" required>
+                                <input type="text" placeholder="Patient Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Your Name'" id="name" name="name" required>
                             </div>
                             <div class="form-group">
-                                <input type="email" placeholder="Patient Email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Your Email'" required> 
+                                <input type="email" placeholder="Patient Email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Your Email'" id="email" name="email" required> 
                             </div>
                             <div class="form-group">
-                                <input type="text" id="datepicker" placeholder="Date" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Date'" required>
+                                <input type="text" id="datepicker" placeholder="Date" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Date'" id="date" name="date" required>
                             </div>
                             <div class="form-group">
-                                <textarea name="message" cols="20" rows="7"  placeholder="Remarques" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Message'" required></textarea>
+                                <textarea name="message" cols="20" rows="7"  placeholder="Remarques" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Message'" id="message" name="message" required></textarea>
                             </div>
-                            <a href="#" class="template-btn">add appointment</a>
+                            <div class="form-group">
+                                <input type="submit" class="template-btn" value="Add appointment">
+                            </div>
                         </form>
                     </div>
                 </div>
