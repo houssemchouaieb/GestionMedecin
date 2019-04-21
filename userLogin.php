@@ -28,3 +28,4 @@ if($response['error']){
 }
 else{
 	header('Location: profile.html');
+}
