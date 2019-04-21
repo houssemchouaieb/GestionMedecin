@@ -27,8 +27,4 @@ if($response['error']){
 	header('Location: index.php'); 
 }
 else{
-	header('Location
-		
-		
-		
-		.html');
+	header('Location: profile.html');
