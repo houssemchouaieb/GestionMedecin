@@ -1,5 +1,25 @@
-<!DOCTYPE html>
-<html lang="en">
+<?php
+$dsn = 'mysql:host=localhost;dbname=medecin';
+$username = 'root';
+$password = '';
+$options = [];
+try {
+$connection = new PDO($dsn, $username, $password, $options);
+} catch(PDOException $e) {
+
+}
+$id = $_GET['id'];
+if($_GET['type']=="patient"){
+    $sql = 'SELECT * FROM client WHERE id=:id';
+}
+else{
+    $sql = 'SELECT * FROM rdv WHERE id=:id';
+}
+$statement = $connection->prepare($sql);
+$statement->execute([':id'=>$id]);
+$people = $statement->fetchAll(PDO::FETCH_OBJ);
+ ?>
+
 <head>
     <!-- Required Meta Tags -->
     <meta charset="UTF-8">
@@ -7,7 +27,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
     <!-- Page Title -->
-    <title>Contact Us</title>
+    <title>Details</title>
 
     <!-- Favicon -->
     <link rel="shortcut icon" href="assets/images/logo/favicon.png" type="image/x-icon">
@@ -22,6 +42,7 @@
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
+
     <!-- Preloader Starts -->
     <div class="preloader">
         <div class="spinner"></div>
@@ -57,7 +78,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 align="center">Contact Us</h1>
+                    <h1 align="center">Detail</h1>
                     
                 </div>
             </div>
@@ -65,14 +86,15 @@
     <section class="contact-form section-padding3">
         <div class="container">
             <div class="row">
+                <?php if($_GET['type']=="patient"){ foreach($people as $person): ?>
                 <div class="col-lg-3 mb-5 mb-lg-0">
                     <div class="d-flex">
                         <div class="into-icon">
                             <i class="fa fa-home"></i>
                         </div>
                         <div class="info-text">
-                            <h3>Moknine, Tunisia</h3>
-                            <p>Boulevard Habib bourguiba</p>
+                            <h3>Patient Name</h3>
+                            <p><?= $person->nom." ".$person->prenom; ?></p>
                         </div>
                     </div>
                     <div class="d-flex">
@@ -80,8 +102,8 @@
                             <i class="fa fa-phone"></i>
                         </div>
                         <div class="info-text">
-                            <h3>+216 73 256 451</h3>
-                            <p>Mon to Fri 8am to 6 pm</p>
+                            <h3>Patient phone</h3>
+                            <p><?= $person->telephone ?></p>
                         </div>
                     </div>
                     <div class="d-flex">
@@ -89,24 +111,61 @@
                             <i class="fa fa-envelope-o"></i>
                         </div>
                         <div class="info-text">
-                            <h3>support@medico.com</h3>
-                            <p>Send us your query anytime!</p>
+                            <h3>Patient email</h3>
+                            <p><?= $person->email ?></p>
+                        </div>
+                    </div>
+                    <div class="d-flex">
+                        <div class="into-icon">
+                            <i class="fa fa-envelope-o"></i>
+                        </div>
+                        <div class="info-text" >
+                            <h3>Specification</h3>
+                            <p ><?= $person->specification ?></p>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-9">
-                    <form action="#">
-                        <div class="left">
-                            <input type="text" placeholder="Enter your name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter your name'" required>
-                            <input type="email" placeholder="Enter email address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter email address'" required>
-                            <input type="text" placeholder="Enter subject" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter subject'" required>
+                <?php  endforeach;} ?>
+                <?php if($_GET['type']=="rdv"){ foreach($people as $person): ?>
+                <div class="col-lg-3 mb-5 mb-lg-0">
+                    <div class="d-flex">
+                        <div class="into-icon">
+                            <i class="fa fa-home"></i>
                         </div>
-                        <div class="right">
-                            <textarea name="message" cols="20" rows="7"  placeholder="Enter Message" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Message'" required></textarea>
+                        <div class="info-text">
+                            <h3>Patient Name</h3>
+                            <p><?= $person->name ?></p>
                         </div>
-                        <button type="submit" class="template-btn" align="center">Submit</button>
-                    </form>
+                    </div>
+                    <div class="d-flex">
+                        <div class="into-icon">
+                            <i class="fa fa-phone"></i>
+                        </div>
+                        <div class="info-text">
+                            <h3>Date</h3>
+                            <p><?= $person->date ?></p>
+                        </div>
+                    </div>
+                    <div class="d-flex">
+                        <div class="into-icon">
+                            <i class="fa fa-envelope-o"></i>
+                        </div>
+                        <div class="info-text">
+                            <h3>Patient email</h3>
+                            <p><?= $person->email ?></p>
+                        </div>
+                    </div>
+                    <div class="d-flex">
+                        <div class="into-icon">
+                            <i class="fa fa-envelope-o"></i>
+                        </div>
+                        <div class="info-text" >
+                            <h3>Traitement</h3>
+                            <p ><?= $person->traitement ?></p>
+                        </div>
+                    </div>
                 </div>
+                <?php  endforeach;} ?>
             </div>
         </div>
     </section>

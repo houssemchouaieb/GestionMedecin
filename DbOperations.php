@@ -40,6 +40,70 @@
 
 		}}
 
+		public function edit($id,$nom,$prenom,$email,$adress,$phone,$spec){
+			if((!empty($nom))&&(!empty($email))&&(!empty($prenom))&&(!empty($adress))&&(!empty($phone))&&(!empty($spec))){
+				
+				$stmt=$this->con->prepare("UPDATE `client` SET `nom`=?,`prenom`=?,`email`=?,`adresse`=?,`telephone`=?,`specification`=? WHERE id=?");
+				$stmt->bind_param("sssssss",$nom,$prenom,$email,$adress,$phone,$spec,$id);		
+			}
+			else{
+				return 3;
+			}
+			if($stmt->execute()){
+				return 1;
+			}
+			else{
+				return 2;
+			}
+
+		}
+
+		public function editRdv($id,$name,$email,$date,$trait){
+			if((!empty($name))&&(!empty($email))&&(!empty($date))&&(!empty($trait))){
+				
+				$stmt=$this->con->prepare("UPDATE `rdv` SET `name`=?,`email`=?,`date`=?,`traitement`=? WHERE id=?");
+				$stmt->bind_param("sssss",$name,$email,$date,$trait,$id);		
+			}
+			else{
+				return 3;
+			}
+			if($stmt->execute()){
+				return 1;
+			}
+			else{
+				return 2;
+			}
+
+		}
+
+		public function deletePatient($id){
+				
+			$stmt=$this->con->prepare("DELETE FROM `client` WHERE id=?");
+			$stmt->bind_param("s",$id);		
+			if($stmt->execute()){
+				return 1;
+			}
+			else{
+				return 2;
+			}
+
+		}
+
+		
+
+		public function deleteRdv($id){
+				
+			$stmt=$this->con->prepare("DELETE FROM `rdv` WHERE id=?");
+			$stmt->bind_param("s",$id);		
+			if($stmt->execute()){
+				return 1;
+			}
+			else{
+				return 2;
+			}
+
+		}
+
 		public function addRdv($name,$email,$date,$message){
 
 			if((!empty($name))&&(!empty($email))&&(!empty($date))){
@@ -111,6 +175,18 @@
 			$stmt->store_result();
 			return $stmt->num_rows>0;
 		}
+		public function createRec($name,$date,$description){
+			
+			$stmt=$this->con->prepare("INSERT INTO `reclamation` (`name`, `date`, `description`,`id`) VALUES (?, ?,?,NULL)");
+
+		
+			$stmt->bind_param("sss",$name,$date,$description);
+
+			$stmt->execute();
+
+		}
+
+		
 		public function adminLogin($username,$pass){
 			$password=md5($pass);
 			$stmt=$this->con->prepare("SELECT id FROM admin WHERE username=? AND password=?");
@@ -230,17 +306,6 @@
 			$stmt->execute();
 
 		}
-		public function createRec($name,$date,$description){
-			
-
-			
-			$stmt=$this->con->prepare("INSERT INTO `reclamation` (`name`, `date`, `description`,`id`) VALUES (?, ?,?,NULL)");
-
 		
-			$stmt->bind_param("sss",$name,$date,$description);
-
-			$stmt->execute();
-
-		}
 
 	}	

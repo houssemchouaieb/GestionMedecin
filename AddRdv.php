@@ -25,4 +25,4 @@
 		$resopnse['message']="Invalid Request";
 	}	
 
-	header('Location: AddRdv.html'); 
+	header('Location: appointments.php'); 

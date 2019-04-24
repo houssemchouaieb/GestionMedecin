@@ -1,5 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
+<?php
+$dsn = 'mysql:host=localhost;dbname=medecin';
+$username = 'root';
+$password = '';
+$options = [];
+try {
+$connection = new PDO($dsn, $username, $password, $options);
+} catch(PDOException $e) {
+
+}
+$id = $_GET['id'];
+$sql = 'SELECT * FROM rdv WHERE id=:id';
+$statement = $connection->prepare($sql);
+$statement->execute([':id' => $id ]);
+$person = $statement->fetch(PDO::FETCH_OBJ);
+
+?>
 <head>
     <!-- Required Meta Tags -->
     <meta charset="UTF-8">
@@ -57,34 +72,28 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1>Patients</h1>
-                   </span> <a href="patients.php">List </a>|</span> <a href="AddPatient.html">Add + </a>
+                    <h1>Appointment</h1>
+                   </span> <a href="appointments.php">List </a>|</span> <a href="AddRdv.html">Add + </a>
                 </div>
             </div><br><br>
             <div class="col-lg-5 offset-lg-1 align-self-center">
                     <div class="appointment-form text-center mt-5 mt-lg-0">
-                        <h3 class="mb-5">Add Patient</h3>
-                        <form action="addPatient.php" method="post">
+                        <h3 class="mb-5">Edit Appointment</h3>
+                        <form  method="post" action="editRdvFunc.php?id=<?= $person->id ?>">
                             <div class="form-group">
-                                <input type="text" placeholder="Patient First Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Patient First Name'" id="prenom" name="prenom" required>
+                                <input type="text" value="<?= $person->name; ?>" id="name" name="name" required>
                             </div>
                             <div class="form-group">
-                                <input type="text" placeholder="Patient Last Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Patient Last Name'" id="nom" name="nom" required>
+                                <input type="email" value="<?= $person->email; ?>" id="email" name="email" required>
                             </div>
                             <div class="form-group">
-                                <input type="email" placeholder="Patient Email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Patient Email'" id="email" name="email" required> 
+                                <input type="text" value="<?= $person->date; ?>" id="date" name="date" required> 
                             </div>
                             <div class="form-group">
-                                <input type="text" placeholder="Patient phone" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Patient phone'" id="phone" name="phone" required>
+                                <textarea  cols="20" rows="7" id="trait" name="trait" ><?= $person->traitement; ?></textarea>
                             </div>
                             <div class="form-group">
-                                <input type="text" placeholder="Patient Adress" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Patient Adress'" id="adress" name="adress" required>
-                            </div>
-                            <div class="form-group">
-                                <textarea  cols="20" rows="7"  placeholder="Remarques" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Remarques'" id="spec" name="spec" required></textarea>
-                            </div>
-                            <div class="form-group">
-                                <input type="submit" class="template-btn" value="Add Patient">
+                                <input type="submit" class="template-btn" value="Edit Appointment" >
                             </div>
                         </form>
                     </div>
@@ -110,7 +119,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 
     <!-- Javascript -->
     <script src="assets/js/vendor/jquery-2.2.4.min.js"></script>
-	<script src="assets/js/vendor/bootstrap-4.1.3.min.js"></script>
+  <script src="assets/js/vendor/bootstrap-4.1.3.min.js"></script>
     <script src="assets/js/vendor/wow.min.js"></script>
     <script src="assets/js/vendor/owl-carousel.min.js"></script>
     <script src="assets/js/vendor/jquery.datetimepicker.full.min.js"></script>

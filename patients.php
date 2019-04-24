@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
     <!-- Page Title -->
-    <title>Appointments</title>
+    <title>Patients</title>
 
     <!-- Favicon -->
     <link rel="shortcut icon" href="assets/images/logo/favicon.png" type="image/x-icon">
@@ -58,37 +58,10 @@
             <div class="row">
                 <div class="col-lg-12">
                     <h1>Patients</h1>
-                   </span> <a href="patients.php">List </a>|</span> <a href="AddPatient.html">Add + </a>
+                     </span> <a href="patients.php">List </a>|</span> <a href="AddPatient.html">Add + </a>
                 </div>
-            </div><br><br>
-            <div class="col-lg-5 offset-lg-1 align-self-center">
-                    <div class="appointment-form text-center mt-5 mt-lg-0">
-                        <h3 class="mb-5">Add Patient</h3>
-                        <form action="addPatient.php" method="post">
-                            <div class="form-group">
-                                <input type="text" placeholder="Patient First Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Patient First Name'" id="prenom" name="prenom" required>
-                            </div>
-                            <div class="form-group">
-                                <input type="text" placeholder="Patient Last Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Patient Last Name'" id="nom" name="nom" required>
-                            </div>
-                            <div class="form-group">
-                                <input type="email" placeholder="Patient Email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Patient Email'" id="email" name="email" required> 
-                            </div>
-                            <div class="form-group">
-                                <input type="text" placeholder="Patient phone" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Patient phone'" id="phone" name="phone" required>
-                            </div>
-                            <div class="form-group">
-                                <input type="text" placeholder="Patient Adress" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Patient Adress'" id="adress" name="adress" required>
-                            </div>
-                            <div class="form-group">
-                                <textarea  cols="20" rows="7"  placeholder="Remarques" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Remarques'" id="spec" name="spec" required></textarea>
-                            </div>
-                            <div class="form-group">
-                                <input type="submit" class="template-btn" value="Add Patient">
-                            </div>
-                        </form>
-                    </div>
-                </div>
+            </div>
+            <br><br><?php include('listingPatient.php') ; ?> 
         </div>
     </section>
     <!-- Banner Area End -->

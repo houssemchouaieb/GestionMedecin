@@ -28,4 +28,4 @@
 	}	
 
 	
-header('Location: patients.html'); 
+header('Location: patients.php'); 
