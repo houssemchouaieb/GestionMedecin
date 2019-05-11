@@ -80,28 +80,9 @@ $this_page_first_result = ($page-1)*$results_per_page;
 $sql='SELECT * FROM client LIMIT ' . $this_page_first_result . ',' .  $results_per_page;
 $result = mysqli_query($con, $sql);
 ?> 
-<div class="card-body">
-  <table class="table table-bordered" style="background:rgba(18, 21, 31,0.06);">
-        <tr>
-             <th style="color:rgb(30,30,30);";>Name</th>
-             <th style="color:rgb(30,30,30);";>Email</th>
-             <th style="color:rgb(30,30,30);";>Adress</th>
-             <th style="color:rgb(30,30,30);";>Phone</th>
-        </tr>
-    <?php while($row = mysqli_fetch_array($result)) {?>
-         <tr>
-               <td><?= $row['nom']." ".$row['prenom']; ?></td>
-               <td><?= $row['email']; ?></td>
-               <td><?= $row['adresse']; ?></td>
-               <td><?= $row['telephone']; ?></td>
-               <td>
-                   <a href="editRdv.php?id=<?= $person->id ?>" >Edit</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                   <a href="detail.php?id=<?= $person->id ?>&type=rdv"  >Details</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                   <a onclick="return confirm('Are you sure you want to delete this patient?')" href="delete.php?id=<?= $person->id ?>&type=rdv" >Delete</a>
-                </td>
-         </tr>
-    <?php }?>
-  </table>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ <?php include('listingPatient.php') ; ?> 
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   <?php for ($page=1;$page<=$number_of_pages;$page++) {
 
       echo '<a href="patients.php?page=' . $page . '">' . $page . '</a> ';
